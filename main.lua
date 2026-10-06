@@ -62,6 +62,8 @@ Core.HelperFuncs.TeleportToPlr = function(player: Player, teleportabove: boolean
 end
 Core.HelperFuncs.TeleportToCFrame = function(cf: CFrame, teleportabove: boolean?)
     if Core.CoreFuncs.ValidateLP() ~= true then return end
+    print(typeof(cf))
+    print(cf)
     if teleportabove == true then
         Core.Player.HRP.CFrame = cf + Vector3.new(0, 8, 0)
         return
