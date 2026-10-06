@@ -51,11 +51,11 @@ Core.Connections.CharacterAdded = game.Players.LocalPlayer.CharacterAdded:Connec
     Core.CoreFuncs.UpdatePlayer()
     Core.CoreFuncs.Notify("Updated Player Data!")
 end)
-Core.HelperFuncs.TeleportToPlr = function(player: Player, teleportabove: boolean?)
+Core.HelperFuncs.TeleportToPlr = function(player: Player, offset: number?)
     if Core.CoreFuncs.ValidateLP() ~= true then return end
     if Core.CoreFuncs.ValidatePlayer(player) ~= true then return end
-    if teleportabove == true then
-        Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 8, 0)
+    if offset ~= nil then
+        Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, offset, 0)
         return
     end
     Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame
