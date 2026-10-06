@@ -51,6 +51,10 @@ Core.Connections.CharacterAdded = game.Players.LocalPlayer.CharacterAdded:Connec
     Core.CoreFuncs.UpdatePlayer()
     Core.CoreFuncs.Notify("Updated Player Data!")
 end)
+Core.HelperFuncs.CopyCFrame = function()
+    Core.CoreFuncs.ValidateLP()
+    setclipboard(tostring(Core.Player.HRP.CFrame))
+end
 Core.HelperFuncs.TeleportToPlr = function(player: Player, offset: number?)
     if Core.CoreFuncs.ValidateLP() ~= true then return end
     if Core.CoreFuncs.ValidatePlayer(player) ~= true then return end
@@ -62,6 +66,10 @@ Core.HelperFuncs.TeleportToPlr = function(player: Player, offset: number?)
 end
 Core.HelperFuncs.TeleportToCFrame = function(cf: CFrame, offset: number?)
     if Core.CoreFuncs.ValidateLP() ~= true then return end
+    if typeof(cf) ~= "CFrame" then
+        Core.CoreFuncs.Notify("Expected a CFrame -- Core.HelperFuncs.TeleportToCFrame()")
+        return
+    end
     if offset ~= nil then
         Core.Player.HRP.CFrame = cf + Vector3.new(0, offset, 0)
         return
