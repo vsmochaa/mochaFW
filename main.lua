@@ -11,7 +11,9 @@ local Core = {
     -- State = {},
     Config = {},
     Tools = {},
-    Actions = {}
+    Actions = {},
+    Events = {},
+    Enums = {}
 }
 
 Core.CoreFuncs.Notify = function(msg: string)
