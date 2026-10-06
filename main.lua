@@ -35,12 +35,13 @@ Core.CoreFuncs.ValidateLP = function()
     if Core.Player.Char == nil then Core.CoreFuncs.Notify("Core.Player.Char is nil") return end
     if Core.Player.Hum == nil then Core.CoreFuncs.Notify("Core.Player.Hum is nil") return end
     if Core.Player.HRP == nil then Core.CoreFuncs.Notify("Core.Player.HRP is nil") return end
+    return true
 end
 Core.CoreFuncs.ValidatePlayer = function(player: Player)
     if player == nil then Core.CoreFuncs.Notify("Provided player returns nil") return end
     repeat task.wait() until player.Character ~= nil
     repeat task.wait() until player.Character:WaitForChild("HumanoidRootPart") ~= nil
-    return
+    return true
 end
 Core.CoreFuncs.Init = function()
     Core.CoreFuncs.UpdatePlayer()
@@ -51,21 +52,21 @@ Core.Connections.CharacterAdded = game.Players.LocalPlayer.CharacterAdded:Connec
     Core.CoreFuncs.Notify("Updated Player Data!")
 end)
 Core.HelperFuncs.TeleportToPlr = function(player: Player, teleportabove: boolean?)
-    Core.CoreFuncs.ValidateLP()
-    Core.CoreFuncs.ValidatePlayer(player)
+    if Core.CoreFuncs.ValidateLP() ~= true then return end
+    if Core.CoreFuncs.ValidatePlayer(player) ~= true then return end
     if teleportabove == true then
         Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 8, 0)
         return
     end
     Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame
 end
-Core.HelperFuncs.TeleportToCFrame = function(CFrame: {CFrame}, teleportabove: boolean?)
-    Core.CoreFuncs.ValidateLP()
+Core.HelperFuncs.TeleportToCFrame = function(cf: CFrame, teleportabove: boolean?)
+    if Core.CoreFuncs.ValidateLP() ~= true then return end
     if teleportabove == true then
-        Core.Player.HRP.CFrame = CFrame.new(CFrame) + Vector3.new(0, 8, 0)
+        Core.Player.HRP.CFrame = cf + Vector3.new(0, 8, 0)
         return
     end
-    Core.Player.HRP.CFrame = CFrame.new(CFrame)
+    Core.Player.HRP.CFrame = cf
 end
 
 return Core
