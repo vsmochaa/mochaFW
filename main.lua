@@ -36,7 +36,7 @@ Core.CoreFuncs.Init = function()
 end
 Core.Connections.CharacterAdded = game.Players.LocalPlayer.CharacterAdded:Connect(function(char: Model)
     Core.CoreFuncs.UpdatePlayer()
-    Core.CoreFuncs.Notify("Updated PlayerData!")
+    Core.CoreFuncs.Notify("Updated Player Data!")
 end)
 
 return Core
