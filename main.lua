@@ -10,12 +10,13 @@ local Core = {
     Connections = {},
     -- State = {},
     Config = {},
+    Tools = {},
     Actions = {}
 }
 
 Core.CoreFuncs.Notify = function(msg: string)
     if msg == nil then msg = "No message provided" end
-    game:GetService("StarterGui"):SetCore("SendNotification", { Title = "MochaFW", Text = msg, Duration = 5 })
+    game:GetService("StarterGui"):SetCore("SendNotification", { Title = "mochaFW", Text = msg, Duration = 5 })
 end
 Core.CoreFuncs.UpdatePlayerData = function()
     repeat task.wait() until game.Players.LocalPlayer ~= nil
