@@ -30,6 +30,18 @@ Core.CoreFuncs.UpdatePlayer = function()
     if Core.Player.Hum == nil then Core.CoreFuncs.Notify("Core.Player.Hum is nil") return end
     if Core.Player.HRP == nil then Core.CoreFuncs.Notify("Core.Player.HRP is nil") return end
 end
+Core.CoreFuncs.ValidateLP = function()
+    if Core.Player.LP == nil then Core.CoreFuncs.Notify("Core.Player.LP is nil") return end
+    if Core.Player.Char == nil then Core.CoreFuncs.Notify("Core.Player.Char is nil") return end
+    if Core.Player.Hum == nil then Core.CoreFuncs.Notify("Core.Player.Hum is nil") return end
+    if Core.Player.HRP == nil then Core.CoreFuncs.Notify("Core.Player.HRP is nil") return end
+end
+Core.CoreFuncs.ValidatePlayer = function(player: Player)
+    if player == nil then Core.CoreFuncs.Notify("Provided player returns nil") return end
+    repeat task.wait() until player.Character ~= nil
+    repeat task.wait() until player.Character:WaitForChild("HumanoidRootPart") ~= nil
+    return
+end
 Core.CoreFuncs.Init = function()
     Core.CoreFuncs.UpdatePlayer()
     Core.CoreFuncs.Notify("mochaFW Initialized!")
@@ -38,5 +50,14 @@ Core.Connections.CharacterAdded = game.Players.LocalPlayer.CharacterAdded:Connec
     Core.CoreFuncs.UpdatePlayer()
     Core.CoreFuncs.Notify("Updated Player Data!")
 end)
+Core.HelperFuncs.TeleportToPlr = function(player: Player, teleportabove: boolean?)
+    Core.CoreFuncs.ValidateLP()
+    Core.CoreFuncs.ValidatePlayer(player)
+    if teleportabove == true then
+        Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 8, 0)
+        return
+    end
+    Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame
+end
 
 return Core
