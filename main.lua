@@ -60,13 +60,13 @@ Core.HelperFuncs.TeleportToPlr = function(player: Player, teleportabove: boolean
     end
     Core.Player.HRP.CFrame = player.Character:WaitForChild("HumanoidRootPart").CFrame
 end
-Core.HelperFuncs.TeleportToCFrame = function(cf, teleportabove: boolean?)
+Core.HelperFuncs.TeleportToCFrame = function(cf: {CFrame}, teleportabove: boolean?)
     if Core.CoreFuncs.ValidateLP() ~= true then return end
     if teleportabove == true then
-        Core.Player.HRP.CFrame = cf
+        Core.Player.HRP.CFrame = CFrame.new(cf)
         return
     end
-    Core.Player.HRP.CFrame = cf
+    Core.Player.HRP.CFrame = CFrame.new(cf)
 end
 
 return Core
