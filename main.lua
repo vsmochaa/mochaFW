@@ -12,6 +12,7 @@ local Core = {
     Config = {},
     Tools = {},
     Actions = {},
+    Runtime = {},
     Events = {},
     Enums = {}
 }
