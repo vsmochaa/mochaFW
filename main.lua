@@ -46,6 +46,11 @@ Core.CoreFuncs.ValidatePlayer = function(player: Player)
     repeat task.wait() until player.Character:WaitForChild("HumanoidRootPart") ~= nil
     return true
 end
+Core.CoreFuncs.RunRuntimeFuncs = function()
+    for func in Core.Runtime do
+        func()
+    end
+end
 Core.CoreFuncs.Init = function()
     Core.CoreFuncs.UpdatePlayer()
     Core.CoreFuncs.Notify("mochaFW Initialized!")
