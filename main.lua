@@ -53,6 +53,7 @@ Core.CoreFuncs.RunRuntimeFuncs = function()
 end
 Core.CoreFuncs.Init = function()
     Core.CoreFuncs.UpdatePlayer()
+    Core.CoreFuncs.RunRuntimeFuncs()
     Core.CoreFuncs.Notify("mochaFW Initialized!")
 end
 Core.Connections.CharacterAdded = game.Players.LocalPlayer.CharacterAdded:Connect(function(char: Model)
